@@ -10,8 +10,16 @@ import { logoMedPres } from '../../assets/images';
 import { ModalInfo } from '../../components/Modal';
 
 function Register(props) {
-  const { register } = props;
+  const { register, clearRegister, navigation } = props;
   console.log(register);
+  function handlePressedButtonModal() {
+    if (register.success) {
+      navigation.goBack();
+      return clearRegister();
+    }
+    clearRegister();
+  }
+
   return (
     <ContainerView>
       <Header />
@@ -21,7 +29,7 @@ function Register(props) {
         <Form {...props} />
       </ContainerRegister>
       <ImageLogo resizeMode="contain" source={logoMedPres} />
-      <ModalInfo {...register} />
+      <ModalInfo {...register} closeModal={handlePressedButtonModal} />
     </ContainerView>
   );
 }

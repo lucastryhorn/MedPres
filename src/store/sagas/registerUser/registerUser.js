@@ -15,6 +15,7 @@ function* registerUserRequest({ data }) {
       },
     );
     yield put(Creators.registerUserSuccess(res.data));
+    console.log(res);
   } catch (error) {
     console.log(error.response);
     yield put(

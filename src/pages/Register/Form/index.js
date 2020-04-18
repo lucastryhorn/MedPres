@@ -3,7 +3,7 @@ import { TextInput } from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import Text from '../../../components/Text';
 import { ViewRow, ViewBirthday } from '../styles';
-import Picker from '../../../components/Picker';
+import PickerModal from '../../../components/Picker';
 import { validate, schema } from './validation';
 import { formatCPF } from '../../../utils/formatCPF';
 import { formatDate } from '../../../utils/formatDate';
@@ -55,8 +55,8 @@ export default function Form(props) {
     }
 
     registerUserRequest({
-      firstName,
-      lastName,
+      first_name: firstName,
+      last_name: lastName,
       cpf: formatCPF(refCPF.current),
       email,
       gender,
@@ -102,9 +102,9 @@ export default function Form(props) {
         onSubmitEditing={() => refBirthday.current.getElement().focus()}
       />
       <ViewRow>
-        <Picker
+        <PickerModal
           title="Gênero"
-          dataPicker={['Masculino', 'Feminino', 'Intersexo']}
+          dataPicker={['Gênero', 'Masculino', 'Feminino', 'Intersexo']}
           error={state.error?.gender}
           callback={(selected) => handleChangeText('gender', selected)}
         />

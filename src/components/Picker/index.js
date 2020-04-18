@@ -1,53 +1,37 @@
 import React, { useState } from 'react';
-import { IconFA5 } from '../../assets/icon';
 import Text from '../Text';
-import {
-  ContainerPicker,
-  ContainerPickerOpen,
-  ButtonPicker,
-  Container,
-} from './styles';
+import { ContainerPicker, ContainerPickerItem, Container } from './styles';
+import { Picker } from 'react-native';
 
-export default function Picker(props) {
-  const [open, setOpen] = useState(false);
+export default function PickerModal(props) {
   const [selected, setSelected] = useState('');
-  const { dataPicker, title, error, callback } = props;
+  const { dataPicker, error, callback } = props;
 
-  function handlePressed() {
-    setOpen(!open);
-  }
-
-  function handlePressedSelected(item) {
+  function handlePressedSelected(item, index) {
+    if (index === 0) {
+      return;
+    }
     setSelected(item);
-    setOpen(false);
     callback(item);
   }
 
   return (
     <Container>
-      <ContainerPicker
-        borderColor={error ? '#c92421' : '#4ddbbc'}
-        onPress={handlePressed}>
-        <Text fontSize={'15px'}>{selected ? selected : title}</Text>
-        <IconFA5 name={open ? 'chevron-up' : 'chevron-down'} size={16} />
+      <ContainerPicker error={error}>
+        <ContainerPickerItem
+          selectedValue={selected}
+          onValueChange={(itemValue, itemIndex) =>
+            handlePressedSelected(itemValue, itemIndex)
+          }>
+          {dataPicker.map((item, index) => {
+            return <Picker.Item key={item} label={item} value={item} />;
+          })}
+        </ContainerPickerItem>
       </ContainerPicker>
       {error && (
         <Text numberOfLines={1} color="#c92421">
           {error}
         </Text>
-      )}
-      {open && (
-        <ContainerPickerOpen
-          error={error}
-          borderColor={error ? '#c92421' : '#4ddbbc'}
-          data={dataPicker}
-          keyExtractor={(item) => String(item)}
-          renderItem={({ item }) => (
-            <ButtonPicker onPress={() => handlePressedSelected(item)}>
-              <Text fontSize={'15px'}>{item}</Text>
-            </ButtonPicker>
-          )}
-        />
       )}
     </Container>
   );

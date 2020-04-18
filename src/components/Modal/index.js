@@ -27,8 +27,8 @@ export function ModalInfo(props) {
     warning,
     info,
     success,
-    firstButton,
-    secondButton,
+    tryAgain,
+    closeModal,
   } = props;
 
   const message = error || success || warning || info;
@@ -103,15 +103,25 @@ export function ModalInfo(props) {
   }
 
   function renderButtons() {
+    if (success) {
+      return (
+        <Button onPress={closeModal}>
+          <Text fontWeight="semiBold" fontSize={'18px'} color="#9d9daa">
+            Ok
+          </Text>
+        </Button>
+      );
+    }
+
     if (error) {
       return (
         <>
-          <Button onPress={firstButton} marginRight={'20px'}>
+          <Button onPress={tryAgain} marginRight={'20px'}>
             <Text fontWeight="semiBold" fontSize={'18px'} color="#9d9daa">
               Tentar de Novo
             </Text>
           </Button>
-          <Button onPress={secondButton}>
+          <Button onPress={closeModal}>
             <Text fontWeight="semiBold" fontSize={'18px'} color="#9d9daa">
               Cancelar
             </Text>
@@ -154,9 +164,12 @@ export function ModalInfo(props) {
     );
   }
 
-  if (loading || error) {
+  if (loading || error || success || warning || info) {
     return (
-      <Modal animationType="fade" transparent={true}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        onRequestClose={closeModal}>
         <ViewModal>
           <Card>{renderBody()}</Card>
         </ViewModal>

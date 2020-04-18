@@ -12,13 +12,14 @@ function* loadUserRequest() {
   if (!token) {
     return yield put(Creators.loadUserFailed(null));
   }
-
+  console.log(token);
   try {
-    const res = yield consumerApi.get('/user', {
+    const res = yield consumerApi.get('/user/', {
       headers: yield createHeader(),
     });
     yield put(Creators.loadUserSuccess(res.data));
   } catch (error) {
+    console.log(error.response);
     yield put(
       Creators.loadUserFailed(formatError(error, error.response?.status)),
     );

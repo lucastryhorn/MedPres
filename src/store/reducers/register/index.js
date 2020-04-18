@@ -16,12 +16,17 @@ const registerUserRequest = (state = INITIAL_STATE) =>
   state.set('loading', true);
 
 const registerUserSuccess = (state = INITIAL_STATE, { data }) =>
-  state.merge({ data, loading: false, success: true });
+  state.merge({
+    data,
+    loading: false,
+    success: `Bem-vindo (a) ${data.cpf?.full_name} ao MedPres.`,
+  });
 
 const registerUserFailed = (state = INITIAL_STATE, { error }) =>
   state.merge({ error, loading: false });
 
-const clearRegister = (state = INITIAL_STATE) => state.merge(INITIAL_STATE);
+const clearRegister = (state = INITIAL_STATE) =>
+  state.merge({ error: null, success: false });
 
 export default createReducer(INITIAL_STATE, {
   [Types.REGISTER_USER_REQUEST]: registerUserRequest,

@@ -23,7 +23,7 @@ function Login(props) {
         <Header />
         <Form {...props} />
       </ContainerLogin>
-      <ModalInfo {...auth} secondButton={props.clearErrorAuth} />
+      <ModalInfo {...auth} closeModal={props.clearErrorAuth} />
     </ContainerView>
   );
 }
