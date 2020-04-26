@@ -8,13 +8,7 @@ import formatError from '../../../utils/formatError';
 
 function* loginUserRequest({ data }) {
   try {
-    const res = yield consumerApi.post(
-      '/login/',
-      { ...data },
-      {
-        headers: yield createHeader(),
-      },
-    );
+    const res = yield consumerApi.post('/login/', { ...data });
     yield AsyncStorage.setItem('token', res.data.token);
     yield put(Creators.loginUserSuccess(res.data));
   } catch (error) {

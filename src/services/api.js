@@ -4,7 +4,7 @@ import getToken from '../utils/getToken';
 export function* createHeader() {
   const header = {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${yield getToken()}`,
+    Authorization: `Token ${yield getToken()}`,
   };
   return header;
 }
