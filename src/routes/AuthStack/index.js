@@ -6,7 +6,7 @@ import Login from '../../pages/Login';
 import Register from '../../pages/Register';
 import SplashScreen from '../../pages/SplashScreen';
 import { Creators as AuthActions } from '../../store/reducers/auth';
-import Home from '../../pages/Home';
+import DrawerHome from '../Drawer';
 
 const Stack = createStackNavigator();
 
@@ -23,16 +23,16 @@ function AuthStack(props) {
   }
 
   return (
-    <Stack.Navigator headerMode="none">
+    <>
       {authenticated ? (
-        <Stack.Screen name="Home" component={Home} />
+        <DrawerHome />
       ) : (
-        <>
+        <Stack.Navigator headerMode="none">
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
-        </>
+        </Stack.Navigator>
       )}
-    </Stack.Navigator>
+    </>
   );
 }
 

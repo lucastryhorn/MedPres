@@ -7,7 +7,7 @@ const font = {
 
 const weight = {
   bold: 'bold',
-  semiBold: 700,
+  semiBold: 600,
 };
 
 export const Container = styled.Text`

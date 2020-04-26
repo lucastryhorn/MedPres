@@ -4,6 +4,7 @@ export const ContainerHeader = styled.View`
   height: 50px;
   flex-direction: row;
   align-items: center;
+  background-color: ${(props) => (props.bg ? props.bg : 'transparent')};
 `;
 
 export const ButtonBack = styled.TouchableHighlight`
