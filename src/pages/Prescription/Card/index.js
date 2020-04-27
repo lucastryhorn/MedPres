@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import Text from '../../../components/Text';
 import { IconFA5 } from '../../../assets/icon';
@@ -10,10 +10,13 @@ import {
   ContainerTextInput,
 } from './styles';
 import { TextInput } from '../../../components/TextInput';
+import ModalFullPrescription from '../ModalFullPrescription';
 
 export default function Card(props) {
-  const { data } = props;
-  console.log(data);
+  console.log(props);
+  const { data } = props.prescriptions;
+  const [selected, setSelected] = useState({});
+
   function _renderItem({ item }) {
     return (
       <ContainerCard>
@@ -36,7 +39,7 @@ export default function Card(props) {
             {`Uso: ${item?.prescription_medicine[0]?.administration_name}`}
           </Text>
         </View>
-        <ContainerButton>
+        <ContainerButton onPress={() => setSelected(item)}>
           <Text color="#0358FF" fontSize={16}>
             Prescrição Completa
           </Text>
@@ -56,6 +59,10 @@ export default function Card(props) {
         keyExtractor={(item) => String(item.id)}
         renderItem={_renderItem}
         showsVerticalScrollIndicator={false}
+      />
+      <ModalFullPrescription
+        item={selected}
+        closeModal={() => setSelected({})}
       />
     </>
   );
