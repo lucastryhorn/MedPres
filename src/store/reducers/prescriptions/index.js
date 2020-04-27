@@ -5,7 +5,7 @@ export const { Types, Creators } = createActions({
   listPrescriptionsRequest: ['data'],
   listPrescriptionsSuccess: ['data'],
   listPrescriptionsFailed: ['error'],
-  clearError: ['data'],
+  clearErrorPrescriptions: ['error'],
 });
 
 const INITIAL_STATE = Immutable({
@@ -25,11 +25,12 @@ const listPrescriptionsSuccess = (state = INITIAL_STATE, { data }) =>
 const listPrescriptionsFailed = (state = INITIAL_STATE, { error }) =>
   state.merge({ error, loading: false });
 
-const clearError = (state = INITIAL_STATE) => state.merge({ error: null });
+const clearErrorPrescriptions = (state = INITIAL_STATE) =>
+  state.merge({ error: null });
 
 export default createReducer(INITIAL_STATE, {
   [Types.LIST_PRESCRIPTIONS_REQUEST]: listPrescriptionsRequest,
   [Types.LIST_PRESCRIPTIONS_SUCCESS]: listPrescriptionsSuccess,
   [Types.LIST_PRESCRIPTIONS_FAILED]: listPrescriptionsFailed,
-  [Types.CLEAR_ERROR]: clearError,
+  [Types.CLEAR_ERROR_PRESCRIPTIONS]: clearErrorPrescriptions,
 });

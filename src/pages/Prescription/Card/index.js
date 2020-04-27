@@ -11,10 +11,11 @@ import {
 } from './styles';
 import { TextInput } from '../../../components/TextInput';
 import ModalFullPrescription from '../ModalFullPrescription';
+import Refresh from '../../../components/Refresh';
 
 export default function Card(props) {
-  console.log(props);
-  const { data } = props.prescriptions;
+  const { listPrescriptionsRequest } = props;
+  const { data, loading } = props.prescriptions;
   const [selected, setSelected] = useState({});
 
   function _renderItem({ item }) {
@@ -59,8 +60,12 @@ export default function Card(props) {
         keyExtractor={(item) => String(item.id)}
         renderItem={_renderItem}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <Refresh onRefresh={listPrescriptionsRequest} loading={loading} />
+        }
       />
       <ModalFullPrescription
+        {...props}
         item={selected}
         closeModal={() => setSelected({})}
       />

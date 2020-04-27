@@ -11,7 +11,7 @@ import { ModalInfo } from '../../components/Modal';
 
 function Register(props) {
   const { register, clearRegister, navigation } = props;
-  console.log(register);
+
   function handlePressedButtonModal() {
     if (register.success) {
       navigation.goBack();

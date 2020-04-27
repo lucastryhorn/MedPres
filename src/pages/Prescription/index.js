@@ -9,7 +9,11 @@ import Card from './Card';
 import { ModalInfo } from '../../components/Modal';
 
 function Prescription(props) {
-  const { listPrescriptionsRequest, prescriptions } = props;
+  const {
+    listPrescriptionsRequest,
+    prescriptions,
+    clearErrorPrescriptions,
+  } = props;
 
   useEffect(() => {
     listPrescriptionsRequest();
@@ -19,13 +23,14 @@ function Prescription(props) {
     <ContainerView>
       <Header menu bg="#4DDBBC" title="Prescrição" txtColor="#FFF" />
       <Card {...props} />
-      <ModalInfo {...prescriptions} />
+      <ModalInfo {...prescriptions} closeModal={clearErrorPrescriptions} />
     </ContainerView>
   );
 }
 
 const mapStateToProps = (state) => ({
   prescriptions: state.prescriptions,
+  apresentation: state.apresentation,
 });
 
 const allActions = { ...PrescriptionsActions, ...ApresentationActions };

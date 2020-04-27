@@ -1,5 +1,11 @@
-import React from 'react';
-import { Modal, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useEffect } from 'react';
+import {
+  Modal,
+  StatusBar,
+  TouchableOpacity,
+  ScrollView,
+  Linking,
+} from 'react-native';
 import Text from '../../../components/Text';
 import { IconFA5 } from '../../../assets/icon';
 import { maskCPF } from '../../../utils/formatCPF';
@@ -9,10 +15,24 @@ import {
   ContainerModal,
   ContainerButton,
 } from './styles';
+import { ModalInfo } from '../../../components/Modal';
 
 export default function ModalFullPrescription(props) {
-  const { item, closeModal } = props;
+  const {
+    item,
+    closeModal,
+    apresentation,
+    clearErrorApresentation,
+    apresentationCompleteRequest,
+  } = props;
 
+  useEffect(() => {
+    if (apresentation.data.medicine_id.bula_pacient) {
+      Linking.openURL(`${apresentation.data.medicine_id.bula_pacient}`);
+    }
+  }, [apresentation?.data?.medicine_id?.bula_pacient]);
+
+  console.log(apresentation);
   if (Object.entries(item).length) {
     return (
       <>
@@ -66,7 +86,10 @@ export default function ModalFullPrescription(props) {
                       {medicine?.recommendation_medicine}
                     </Text>
                   </Text>
-                  <ContainerButton>
+                  <ContainerButton
+                    onPress={() =>
+                      apresentationCompleteRequest(medicine.presentation, true)
+                    }>
                     <Text fontSize={16} color="#0358FF">
                       Bula
                     </Text>
@@ -85,6 +108,7 @@ export default function ModalFullPrescription(props) {
             </ContainerModal>
           </ScrollView>
         </Modal>
+        <ModalInfo {...apresentation} closeModal={clearErrorApresentation} />
       </>
     );
   }
