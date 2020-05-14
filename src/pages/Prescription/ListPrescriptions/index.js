@@ -13,7 +13,7 @@ import { TextInput } from '../../../components/TextInput';
 import ModalFullPrescription from '../ModalFullPrescription';
 import Refresh from '../../../components/Refresh';
 
-export default function Card(props) {
+export default function ListPrescriptions(props) {
   const { listPrescriptionsRequest } = props;
   const { data, loading } = props.prescriptions;
   const [selected, setSelected] = useState({});
@@ -48,6 +48,10 @@ export default function Card(props) {
         </ContainerButton>
       </ContainerCard>
     );
+  }
+
+  if (!data) {
+    return null;
   }
 
   return (

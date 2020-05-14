@@ -4,12 +4,9 @@ import Button from '../../../components/Button';
 import Text from '../../../components/Text';
 import { ViewRow, ViewBirthday } from '../styles';
 import PickerModal from '../../../components/Picker';
-import { validate, schema } from './validation';
+import { validate, schema, refCPF, refBirthday } from './validation';
 import { formatCPF } from '../../../utils/formatCPF';
 import { formatDate } from '../../../utils/formatDate';
-
-export const refCPF = createRef();
-export const refBirthday = createRef();
 
 export default function Form(props) {
   const [state, setState] = useState({

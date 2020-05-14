@@ -1,4 +1,7 @@
-import { refCPF, refBirthday } from '.';
+import { createRef } from 'react';
+
+export const refCPF = createRef();
+export const refBirthday = createRef();
 
 export const validators = {
   required: (config, value) => value !== '',

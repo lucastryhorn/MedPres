@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { Animated } from 'react-native';
 
 export const ContainerTextInput = styled.View`
   elevation: 2;
 `;
 
-export const ContainerView = styled(Animated.View)`
+export const ContainerView = styled.View`
   height: 200;
   background-color: white;
   elevation: 1;
@@ -19,9 +18,10 @@ export const ContainerView = styled(Animated.View)`
   border-right-width: 1;
   border-left-width: 1;
   border-color: #4ddbbc;
+  z-index: 10;
 `;
 
-export const ContainerViewFlatList = styled.View`
+export const ContainerButton = styled.TouchableOpacity`
   padding: 15px;
   border-bottom-width: 0.3;
   border-color: #ccc;

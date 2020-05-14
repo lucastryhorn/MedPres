@@ -1,4 +1,6 @@
-import { refCPF } from '.';
+import { createRef } from 'react';
+
+export const refCPF = createRef();
 
 export const validators = {
   required: (config, value) => value !== '',

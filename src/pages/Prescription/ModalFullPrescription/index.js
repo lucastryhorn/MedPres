@@ -21,18 +21,17 @@ export default function ModalFullPrescription(props) {
   const {
     item,
     closeModal,
-    apresentation,
-    clearErrorApresentation,
-    apresentationCompleteRequest,
+    presentation,
+    clearErrorPresentation,
+    presentationCompleteRequest,
   } = props;
 
   useEffect(() => {
-    if (apresentation.data.medicine_id.bula_pacient) {
-      Linking.openURL(`${apresentation.data.medicine_id.bula_pacient}`);
+    if (presentation?.selectedItem?.medicine_id?.bula_pacient) {
+      Linking.openURL(`${presentation.selectedItem.medicine_id.bula_pacient}`);
     }
-  }, [apresentation?.data?.medicine_id?.bula_pacient]);
+  }, [presentation?.selectedItem?.medicine_id?.bula_pacient]);
 
-  console.log(apresentation);
   if (Object.entries(item).length) {
     return (
       <>
@@ -88,7 +87,7 @@ export default function ModalFullPrescription(props) {
                   </Text>
                   <ContainerButton
                     onPress={() =>
-                      apresentationCompleteRequest(medicine.presentation, true)
+                      presentationCompleteRequest(medicine.presentation, true)
                     }>
                     <Text fontSize={16} color="#0358FF">
                       Bula
@@ -108,7 +107,7 @@ export default function ModalFullPrescription(props) {
             </ContainerModal>
           </ScrollView>
         </Modal>
-        <ModalInfo {...apresentation} closeModal={clearErrorApresentation} />
+        <ModalInfo {...presentation} closeModal={clearErrorPresentation} />
       </>
     );
   }

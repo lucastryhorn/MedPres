@@ -9,9 +9,7 @@ import { TextInput } from '../../../components/TextInput';
 import Button from '../../../components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { formatCPF } from '../../../utils/formatCPF';
-import { validate, schema } from './validation';
-
-export const refCPF = createRef();
+import { validate, schema, refCPF } from './validation';
 
 export default function Form(props) {
   const [state, setState] = useState({ cpf: '', password: '' });

@@ -3,14 +3,16 @@ import { all, fork } from 'redux-saga/effects';
 import authSagas from './auth';
 import registerUserSagas from './registerUser';
 import prescriptionsSagas from './prescriptions';
-import apresentationSagas from './apresentation';
+import presentationSagas from './presentation';
+import myPharmacySagas from './myPharmacy';
 
 function* rootSaga() {
   yield all([
     fork(authSagas),
     fork(registerUserSagas),
     fork(prescriptionsSagas),
-    fork(apresentationSagas),
+    fork(presentationSagas),
+    fork(myPharmacySagas),
   ]);
 }
 

@@ -12,7 +12,7 @@ export const ViewTextInput = styled.View`
   justifyContent: center
   alignItems: center
   borderWidth: ${(props) => props.borderWidth}
-  height: 50
+  height: ${(props) => (props.height ? props.height : '50px')}
   borderRadius: 5
   paddingHorizontal: 5px
   margin-vertical: 5px

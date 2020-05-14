@@ -10,7 +10,6 @@ export const { Types, Creators } = createActions({
 
 const INITIAL_STATE = Immutable({
   loading: false,
-  data: [],
 });
 
 const listPrescriptionsRequest = (state = INITIAL_STATE) =>
